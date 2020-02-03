@@ -1,1 +1,7 @@
-Show all tweets page
+<h2>Tweets by <%= @tweets.first.user.username %></h2>
+
+<ul>
+<% @tweets.each do |tweet| %>
+    <li><%= tweet.content %></li>
+<% end %>
+</ul>

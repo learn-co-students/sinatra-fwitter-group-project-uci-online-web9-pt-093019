@@ -1,8 +1,16 @@
 class TweetsController < ApplicationController
 
     get '/tweets' do
-        @tweets = Tweets.all 
-        erb :'tweets/index'
+        if logged_in?
+            @tweets = Tweet.where("id = ?", current_user.id)
+            if @tweets.empty?
+                erb :'tweets/no_tweets'
+            else
+                erb :'tweets/tweets'
+            end
+        else
+            redirect to '/login'
+        end
     end
 
     get '/tweets/new' do
@@ -10,12 +18,12 @@ class TweetsController < ApplicationController
     end
 
     get '/tweets/:id' do
-        @tweet = Tweets.find(params[:id])
+        @tweet = Tweet.find(params[:id])
         erb :'tweets/show_tweets'
     end
 
     get '/tweets/:id/edit' do
-        @tweet = Tweets.find(params[:id])
+        @tweet = Tweet.find(params[:id])
         erb :'tweets/edit_tweet'
     end
 

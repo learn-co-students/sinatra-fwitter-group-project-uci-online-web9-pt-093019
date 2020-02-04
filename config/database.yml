@@ -6,5 +6,6 @@ development:
   <<: *default
 
 test:
-  <<: *default
+  #<<: *default
+  adapter: 'sqlite3'
   database: 'db/test.sqlite'

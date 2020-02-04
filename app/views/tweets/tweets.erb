@@ -1,0 +1,15 @@
+<h2>Welcome, <%= @user.username %></h2>
+
+
+<% if @tweets.empty? %>
+    <p>No Tweets yet!  Click below to create your first tweet.</p>
+<% else %>
+    <ul>
+    <% @tweets.each do |tweet| %>
+        <li><%= tweet.content %></li>
+    <% end %>
+    </ul>
+<% end %>
+
+<a href="/tweets/new">Create New Tweet</a>
+    

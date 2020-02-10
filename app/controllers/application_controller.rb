@@ -5,23 +5,21 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
   end
 
   get '/' do
     erb :'/home'
   end
 
-  get '/signup' do
-    erb :'/users/signup'
-  end
-
-  get '/login' do
-    erb :'/users/login'
-  end
 
   helpers do
     def logged_in?
-      !!current_user
+      if session[:user_id] && !!current_user
+        true
+      else
+        false
+      end
     end
 
     def current_user

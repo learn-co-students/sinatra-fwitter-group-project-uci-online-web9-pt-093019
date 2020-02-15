@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20200204020230) do
 
-  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
-    t.string   "value"
-    t.datetime "created_at", limit: 6, null: false
-    t.datetime "updated_at", limit: 6, null: false
-  end
-
-  add_index "ar_internal_metadata", ["key"], name: "sqlite_autoindex_ar_internal_metadata_1", unique: true
-
   create_table "tweets", force: :cascade do |t|
     t.string  "content"
     t.integer "user_id"
